@@ -12,7 +12,7 @@ app.secret_key = 'crms_premium_secret_key'
 # ── Database ────────────────────────────────────────────────────────────
 app.config['MYSQL_HOST']        = 'localhost'
 app.config['MYSQL_USER']        = 'root'
-app.config['MYSQL_PASSWORD']    = 'ynadmin'
+app.config['MYSQL_PASSWORD']    = 'nexusadministrator'
 app.config['MYSQL_DB']          = 'crms'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
