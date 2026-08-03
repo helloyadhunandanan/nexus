@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS — Campus Resource Management</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+  
+  <style>
+    /* MASS IMPACT HERO STYLES */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 140px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      width: 100%;
+      max-width: 1200px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      margin: 0 auto 25px;
+    }
+    .hero-h1 {
+      font-size: clamp(3.5rem, 8vw, 6.5rem) !important; /* Massive typography */
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 30px;
+      font-weight: 800;
+    }
+    .hero-body {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      max-width: 750px;
+      margin: 0 auto 45px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 60px;
+    }
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    
+    /* Background Ambient Glowing Orbs */
+    .ambient-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 0;
+      opacity: 0.45;
+      animation: pulseGlow 8s infinite alternate ease-in-out;
+    }
+    .glow-1 {
+      top: 5%;
+      left: 15%;
+      width: 45vw;
+      height: 45vw;
+      background: var(--accent-purple, #8b5cf6);
+    }
+    .glow-2 {
+      bottom: -10%;
+      right: 10%;
+      width: 40vw;
+      height: 40vw;
+      background: var(--accent-cyan, #06b6d4);
+      animation-delay: -4s;
+    }
+    @keyframes pulseGlow {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+      100% { transform: scale(1.1) translate(30px, -30px); opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  <div class="flash-container">
+  {% for category, message in messages %}
+    <div class="flash-toast {{ category }}">{{ message }}</div>
+  {% endfor %}
+  </div>
+{% endif %}
+{% endwith %}
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="land-nav">
+  <div class="land-logo">NEXUS<span class="dot">·</span></div>
+  <div class="land-nav-links">
+    <a href="#home"     class="land-nav-link">Home</a>
+    <a href="#features" class="land-nav-link">Features</a>
+    <a href="#contact"  class="land-nav-link">Contact</a>
+  </div>
+  <div class="land-nav-right">
+    <button id="themeToggle" class="btn btn-icon round" title="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+    <button id="openSignIn" class="btn btn-dark btn-sm">Sign in</button>
+    <button id="openRegister" class="btn btn-v btn-sm">Get Started</button>
+  </div>
+</nav>
+
+<!-- ═══ MASS HERO SECTION ═══ -->
+<section id="home" class="hero">
+  <!-- Ambient background glows -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="hero-eye-dot"></span>
+      Campus Resource Management System
+    </div>
+    <h1 class="hero-h1">
+      Book. Manage.<br>
+      <span class="grad">Control everything.</span>
+    </h1>
+    <p class="hero-body">
+      A unified platform for students, staff, and administrators to reserve labs, equipment, and venues — with real-time schedules, role-based approvals, and instant notifications.
+    </p>
+    <div class="hero-actions">
+      <button id="heroGetStarted" class="btn btn-v" style="padding: 16px 32px; font-size: 1.1rem;">
+        Get Started &nbsp;<i class="fa-solid fa-bolt"></i>
+      </button>
+      <a href="#features" class="btn btn-ghost" style="padding: 16px 32px; font-size: 1.1rem;">Explore features</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-pill"><i class="fa-solid fa-check-circle" style="color: var(--accent-cyan);"></i> Instant booking</div>
+      <div class="proof-pill"><i class="fa-solid fa-check-circle" style="color: var(--accent-cyan);"></i> Conflict detection</div>
+      <div class="proof-pill"><i class="fa-solid fa-check-circle" style="color: var(--accent-cyan);"></i> Multi-role approvals</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section id="features" class="feat-strip">
+  <div class="feat-top">
+    <span class="eyebrow">What's inside</span>
+    <h2 class="section-title">Everything your campus needs</h2>
+    <p class="section-sub">One platform. Every resource. Total clarity.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-ico" style="background:var(--v-dim);color:var(--v-2);">
+        <i class="fa-solid fa-computer"></i>
+      </div>
+      <h3>Computer Labs</h3>
+      <p>Reserve high-performance workstations for programming, design, and research projects.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-ico" style="background:var(--c-dim);color:var(--c);">
+        <i class="fa-solid fa-video"></i>
+      </div>
+      <h3>A/V Equipment</h3>
+      <p>Book projectors, smart boards, and audio systems for presentations and campus events.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-ico" style="background:var(--ok-bg);color:var(--ok);">
+        <i class="fa-solid fa-users-rectangle"></i>
+      </div>
+      <h3>Seminar Halls</h3>
+      <p>Reserve spacious venues for lectures, workshops, club meetings, and collaborations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="feat-strip" style="background: var(--bg-2); border-top: 1px solid var(--border);">
+  <div class="feat-top">
+    <span class="eyebrow">Get in touch</span>
+    <h2 class="section-title">Contact our team</h2>
+    <p class="section-sub">Have questions or need support? Reach out to the NEXUS team.</p>
+  </div>
+  <div class="feat-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 700px; margin: 0 auto;">
+    
+    <!-- Location Card -->
+    <div class="feat-card" style="text-align: center;">
+      <div class="feat-ico" style="margin: 0 auto 20px; background: var(--v-dim); color: var(--v-2);">
+        <i class="fa-solid fa-map-location-dot"></i>
+      </div>
+      <h3>NEXUS Headquarters</h3>
+      <p>Keralam, India</p>
+    </div>
+
+    <!-- Email Card -->
+    <div class="feat-card" style="text-align: center;">
+      <div class="feat-ico" style="margin: 0 auto 20px; background: var(--c-dim); color: var(--c);">
+        <i class="fa-solid fa-envelope-open-text"></i>
+      </div>
+      <h3>Email Support</h3>
+      <p>nexuscrms@gmail.com </p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">&copy; 2025 NEXUS — Campus Resource Management System</footer>
+
+<!-- ══════════════════════════════
+     AUTH MODAL  (Sign In / Register / Forgot / OTP)
+══════════════════════════════════ -->
+<div class="modal-backdrop" id="authModal">
+  <div class="modal">
+    <button class="modal-close" id="closeAuth">&#x2715;</button>
+
+    <!-- ─── SIGN IN ─── -->
+    <div id="view-login">
+      <p class="modal-logo-text">NEXUS</p>
+      <h2 class="modal-title">Welcome back</h2>
+      <p class="modal-sub">Sign in to manage your campus resources.</p>
+      <form action="/login" method="POST">
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" class="input" placeholder="you@college.edu" required>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" class="input" placeholder="••••••••" required>
+        </div>
+        <div style="text-align:right;margin-top:-6px;margin-bottom:14px;">
+          <span class="form-link" id="toForgot">Forgot password?</span>
+        </div>
+        <button type="submit" class="btn btn-v" style="width:100%;justify-content:center;">
+          Sign In &nbsp;<i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+      <div class="auth-switch">No account? <span id="toRegister">Create one</span></div>
+    </div>
+
+    <!-- ─── REGISTER ─── -->
+    <div id="view-register" style="display:none;">
+      <p class="modal-logo-text">NEXUS</p>
+      <h2 class="modal-title">Create account</h2>
+      <p class="modal-sub">Join your campus platform today.</p>
+      <form action="/register" method="POST">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="name" class="input" placeholder="Your full name" required>
+        </div>
+        <div class="field">
+          <label>Department</label>
+          <select name="department" class="select" required>
+            <option value="" disabled selected>Select department</option>
+            <option>Artificial Intelligence</option>
+            <option>Civil Engineering</option>
+            <option>Computer Science</option>
+            <option>Data Science</option>
+            <option>Electrical Engineering</option>
+            <option>Electronics and Communication</option>
+            <option>Information Technology</option>
+            <option>Mechanical Engineering</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" class="input" placeholder="you@college.edu" required>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" class="input" placeholder="Min 8 characters" required>
+        </div>
+        <button type="submit" class="btn btn-v" style="width:100%;justify-content:center;margin-top:4px;">
+          Create Account &nbsp;<i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+      <div class="auth-switch">Already have an account? <span id="toLogin">Sign in</span></div>
+    </div>
+
+    <!-- ─── FORGOT PASSWORD ─── -->
+    <div id="view-forgot" style="display:none;">
+      <p class="modal-logo-text">NEXUS</p>
+      <h2 class="modal-title">Reset password</h2>
+      <p class="modal-sub">Enter your college email — we'll send a 6-digit OTP to verify you.</p>
+      <form action="/forgot_password" method="POST" id="forgotForm">
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" class="input" placeholder="you@college.edu" required>
+        </div>
+        <button type="submit" class="btn btn-v" style="width:100%;justify-content:center;">
+          Send OTP &nbsp;<i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+      <div class="modal-divider">or</div>
+      <div class="auth-switch"><span id="backToLogin">← Back to Sign In</span></div>
+    </div>
+
+    <!-- ─── OTP VERIFY ─── -->
+    <div id="view-otp" style="display:none;">
+      <p class="modal-logo-text">NEXUS</p>
+      <h2 class="modal-title">Enter OTP</h2>
+      <p class="modal-sub" id="otp-sub-text">We sent a 6-digit code to your email.</p>
+      <form action="/verify_otp" method="POST" id="otpForm">
+        <input type="hidden" name="email" id="otp-email-hidden">
+        <div class="otp-row">
+          <input type="text" maxlength="1" class="otp-box" data-idx="0" inputmode="numeric" pattern="[0-9]">
+          <input type="text" maxlength="1" class="otp-box" data-idx="1" inputmode="numeric" pattern="[0-9]">
+          <input type="text" maxlength="1" class="otp-box" data-idx="2" inputmode="numeric" pattern="[0-9]">
+          <input type="text" maxlength="1" class="otp-box" data-idx="3" inputmode="numeric" pattern="[0-9]">
+          <input type="text" maxlength="1" class="otp-box" data-idx="4" inputmode="numeric" pattern="[0-9]">
+          <input type="text" maxlength="1" class="otp-box" data-idx="5" inputmode="numeric" pattern="[0-9]">
+        </div>
+        <input type="hidden" name="otp" id="otp-combined">
+        <button type="submit" class="btn btn-v" style="width:100%;justify-content:center;margin-top:12px;">
+          Verify OTP &nbsp;<i class="fa-solid fa-shield-check"></i>
+        </button>
+      </form>
+      <div class="auth-switch" style="margin-top:14px;">
+        Didn't receive it? <span id="resendOtp">Resend OTP</span>
+      </div>
+    </div>
+
+    <!-- ─── RESET PASSWORD ─── -->
+    <div id="view-reset" style="display:none;">
+      <p class="modal-logo-text">NEXUS</p>
+      <h2 class="modal-title">New password</h2>
+      <p class="modal-sub">OTP verified. Set your new password below.</p>
+      <form action="/reset_password" method="POST">
+        <input type="hidden" name="email" id="reset-email-hidden">
+        <div class="field">
+          <label>New Password</label>
+          <input type="password" name="new_password" class="input" placeholder="Min 8 characters" required>
+        </div>
+        <div class="field">
+          <label>Confirm New Password</label>
+          <input type="password" name="confirm_password" class="input" placeholder="Repeat password" required>
+        </div>
+        <button type="submit" class="btn btn-v" style="width:100%;justify-content:center;">
+          Reset Password &nbsp;<i class="fa-solid fa-lock"></i>
+        </button>
+      </form>
+    </div>
+
+  </div><!-- /modal -->
+</div><!-- /backdrop -->
+
+<script src="/static/script.js"></script>
+</body>
+</html>
